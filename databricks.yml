@@ -1,5 +1,5 @@
 bundle:
-  name: e2e-data-project
+  name: e2e-data-project-auto
 
 include:
   - resources/*.yml
@@ -9,28 +9,26 @@ targets:
     mode: development
     default: true
     workspace:
-      host: https://adb-4181970831265458.18.azuredatabricks.net/
+      host: https://adb-3539449710843752.12.azuredatabricks.net/
     variables:
-      catalog_name: pedroz_e2edata_dev
+      catalog_name: hive_metastore  # ou remova se não for usado
       environment: dev
 
   prod:
     mode: production
     workspace:
-      host: https://adb-4181970831265458.18.azuredatabricks.net/
+      host: https://adb-3539449710843752.12.azuredatabricks.net/
     variables:
-      catalog_name: pedroz_e2edata_prod
+      catalog_name: hive_metastore  # ou remova se não for usado
       environment: prod
     
-    # Add any production-specific overrides here
     run_as:
-      # Specify a service principal for production
       user_name: ${workspace.current_user.userName}
 
 variables:
   catalog_name:
     description: "Name of the Unity Catalog to use"
-    default: "default_catalog"
+    default: "hive_metastore"
   environment:
     description: "Environment name (dev/prod)"
-    default: "dev" 
+    default: "dev"
